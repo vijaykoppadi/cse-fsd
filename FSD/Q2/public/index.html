@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Users List</title>
+</head>
+<body>
+    <h1>All Users</h1>
+
+    <a href="add.html">Add User</a><br>
+    <a href="update.html">Update User</a><br>
+    <a href="delete.html">Delete User</a><br><br>
+
+    <div id="users"></div>
+
+    <script>
+        fetch('/api/users')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("users").innerHTML =
+                    data.map(u => `<p>${u.id}. ${u.name}</p>`).join("");
+            });
+    </script>
+</body>
+</html>
